@@ -1,2 +1,0 @@
-# FerreSoluciones
-Proyecto Cliente Servidor
