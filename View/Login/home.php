@@ -18,7 +18,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Desplegable de menú-->
-            <a class="navbar-brand ps-3" href="index.html">Menú</a>
+            <a class="navbar-brand ps-3" href="home.php">Menú</a>
             <!-- Opcion de desplegar menu -->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Opcion de buscar-->
@@ -72,8 +72,8 @@
             <!--Contenido principal de la pantalla-->
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Bienvenido a Ferresoluciones</h1>
+                    <div class="container-fluid px-5">
+                        <h1 class="mt-3">Bienvenido a Ferresoluciones</h1>
 
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
