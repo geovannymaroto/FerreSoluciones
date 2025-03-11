@@ -22,16 +22,15 @@
     <body class="d-flex flex-column min-vh-100">
         <div class="container MargenSuperior">
             <div class="row justify-content-center">
-                <div class="col-xl-6 col-lg-12 col-md-9">
+                <div class="col-xl-9 col-lg-12 col-md-9">
                     <div class="card o-hidden border-9 shadow-lg my-5">
                         <div class="card-body p-6">
                             <div class="row">
-                                <div class="col-lg-3"></div>
                                     <div class="col-lg-12 text-center">
                                         <div class="p-5">
 
                                             <div class="text-center">
-                                                <h1 class="h1 text-gray-900 mb-4">FerreSoluciones</h1>
+                                                <h1 class="h1 text-gray-900 mb-8">FerreSoluciones</h1>
                                             </div>
 
                                             <br>
@@ -64,11 +63,11 @@
                                             <hr>
                                         
                                             <div class="text-center">
-                                                <a class="small" href="recuperarContrasenna.php">Recuperar Contraseña</a>
+                                                <a class="small" href="recuperarContrasenna.php" style="color: #dcc107; text-decoration: bold;">Recuperar Contraseña</a>
                                             </div>
 
                                             <div class="text-center">
-                                                <a class="small" href="registrarCuenta.php">Crear una Cuenta</a>
+                                                <a class="small" href="registrarCuenta.php" style="color: #dcc107; text-decoration: bold;">Crear una Cuenta</a>
                                             </div>
 
                                         </div>
