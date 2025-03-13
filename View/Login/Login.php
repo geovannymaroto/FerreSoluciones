@@ -13,12 +13,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Ferresoluciones</title>
+        <title>FerreSoluciones</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="../Styles/styles.css" rel="stylesheet" />
+        <link href="../Styles/style.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    </head>
-  
+    </head> 
     <body class="d-flex flex-column min-vh-100">
         <div class="container MargenSuperior">
             <div class="row justify-content-center">
@@ -56,7 +55,7 @@
                                                 </div>
                                                 <br>
                                                 <br>
-                                                <input type="submit" class="btn btn-warning btn-user btn-block" value="Procesar"
+                                                <input type="submit" class="btn btn-warning" value="Procesar"
                                                 id="btnIniciarSesion" name="btnIniciarSesion" >
                                             </form>
                                             <hr>
@@ -64,7 +63,7 @@
                                                 <a class="small" href="recuperarContrasenna.php"style="color: #dcc107; text-decoration: bold;">Recuperar Contraseña</a>
                                             </div>
                                             <div class="text-center">
-                                                <a class="small" href="registrarCuenta.php" style="color: #dcc107; text-decoration: bold;">Crear una Cuenta</a>
+                                                <a class="small" href="registrarCuenta.php">Crear una Cuenta</a>
                                             </div>
 
                                         </div>
@@ -78,8 +77,7 @@
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; FerreSoluciones 2025</div>
-                       
+                    <div class="text-muted">Copyright &copy; FerreSoluciones 2025</div>               
                 </div>
             </div>
         </footer>
