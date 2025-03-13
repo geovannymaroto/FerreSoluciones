@@ -221,6 +221,8 @@ strong {
 
 small, .small {
   font-size: 0.875em;
+  text-decoration: none;
+  color: #ffc107;
 }
 
 mark, .mark {

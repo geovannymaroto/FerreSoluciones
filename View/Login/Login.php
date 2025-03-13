@@ -15,7 +15,7 @@
         <meta name="author" content="" />
         <title>Ferresoluciones</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="../Styles/styles.css" rel="stylesheet" />
+        <link href="../Styles/style.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
   
@@ -56,18 +56,18 @@
                                                 </div>
                                                 <br>
                                                 <br>
-                                                <input type="submit" class="btn btn-warning btn-user btn-block" value="Procesar"
+                                                <input type="submit" class="btn btn-warning" value="Procesar"
                                                 id="btnIniciarSesion" name="btnIniciarSesion" >
                                             </form>
 
                                             <hr>
                                         
                                             <div class="text-center">
-                                                <a class="small" href="recuperarContrasenna.php" style="color: #dcc107; text-decoration: bold;">Recuperar Contraseña</a>
+                                                <a class="small" href="recuperarContrasenna.php">Recuperar Contraseña</a>
                                             </div>
 
                                             <div class="text-center">
-                                                <a class="small" href="registrarCuenta.php" style="color: #dcc107; text-decoration: bold;">Crear una Cuenta</a>
+                                                <a class="small" href="registrarCuenta.php">Crear una Cuenta</a>
                                             </div>
 
                                         </div>
