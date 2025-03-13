@@ -6,24 +6,24 @@
         session_start();
     }
 
-    //if(isset($_POST["btnRegistrarCuenta"]))
-    ////{
-    ////    $identificacion = $_POST["txtIdentificacion"];
-    ////    $nombre = $_POST["txtNombre"];
-    ////    $correo = $_POST["txtCorreo"];
-    //    $contrasenna = $_POST["txtContrasenna"];
+    if(isset($_POST["btnRegistrarCuenta"]))
+    {
+        $identificacion = $_POST["txtIdentificacion"];
+        $nombre = $_POST["txtNombre"];
+        $correo = $_POST["txtCorreo"];
+        $contrasenna = $_POST["txtContrasenna"];
 
-     //   $resultado = RegistrarCuentaModel($identificacion,$nombre,$correo,$contrasenna);
+        //$resultado = RegistrarCuentaModel($identificacion,$nombre,$correo,$contrasenna);
 
-     //   if($resultado == true)
-     //   {
-     //       header('location: ../../View/Login/login.php');
-     //   }
-     //   else
-     //   {
-     //       $_POST["Message"] = "Su información no fue registrada correctamente";
-     //   }
-   // }
+        if($resultado == true)
+        {
+            header('location: ../../View/Login/login.php');
+        }
+        else
+        {
+            $_POST["Message"] = "Su información no fue registrada correctamente";
+        }
+    }
 
     if(isset($_POST["btnIniciarSesion"]))
     {

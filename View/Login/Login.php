@@ -59,13 +59,10 @@
                                                 <input type="submit" class="btn btn-warning btn-user btn-block" value="Procesar"
                                                 id="btnIniciarSesion" name="btnIniciarSesion" >
                                             </form>
-
                                             <hr>
-                                        
                                             <div class="text-center">
-                                                <a class="small" href="recuperarContrasenna.php" style="color: #dcc107; text-decoration: bold;">Recuperar Contraseña</a>
+                                                <a class="small" href="recuperarContrasenna.php"style="color: #dcc107; text-decoration: bold;">Recuperar Contraseña</a>
                                             </div>
-
                                             <div class="text-center">
                                                 <a class="small" href="registrarCuenta.php" style="color: #dcc107; text-decoration: bold;">Crear una Cuenta</a>
                                             </div>
@@ -78,13 +75,10 @@
                     </div>
                 </div>
             </div>
-        
-      
-
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                    <div class="text-muted">Copyright &copy; FerreSoluciones 2025</div>
                        
                 </div>
             </div>
