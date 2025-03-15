@@ -27,13 +27,10 @@
                             <div class="row">
                                     <div class="col-lg-12 text-center">
                                         <div class="p-5">
-
                                             <div class="text-center">
                                                 <h1 class="h1 text-gray-900 mb-8">FerreSoluciones</h1>
                                             </div>
-
-                                            <br>
-                                            
+                                            <br>                                            
                                             <?php
                                                 if(isset($_POST["Message"]))
                                                 {
@@ -51,7 +48,6 @@
                                                     <input type="password" class="form-control form-control-user"
                                                         id="txtContrasenna" name="txtContrasenna" 
                                                         placeholder="Contraseña" required>
-                                                        
                                                 </div>
                                                 <br>
                                                 <br>
@@ -65,7 +61,6 @@
                                             <div class="text-center">
                                                 <a class="small" href="registrarCuenta.php">Crear una Cuenta</a>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>

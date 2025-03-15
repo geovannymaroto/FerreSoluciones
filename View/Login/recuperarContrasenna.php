@@ -24,21 +24,17 @@
         <meta name="author" content="" />
         <title>FerreSoluciones</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="../Styles/styles.css" rel="stylesheet" />
+        <link href="../Styles/style.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
 
 <body class="bg-gradient-primary">
 
     <div class="container MargenSuperior">
-
         <div class="row justify-content-center">
-
             <div class="col-xl-10 col-lg-12 col-md-9">
-
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
-
                         <div class="row">
                             <div class="col-lg-3"></div>
                             <div class="col-lg-6">
@@ -55,7 +51,6 @@
                                             <input type="submit" class="btn btn-danger btn-user btn-block" 
                                                 value="Procesar" id="btnRecuperarCuenta" name="btnRecuperarCuenta">
                                         </div>
-
                                         </a>
                                     </form>
                                     <hr>
