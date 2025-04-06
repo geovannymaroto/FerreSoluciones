@@ -5,12 +5,12 @@
     {
         try
         {
-            $enlace = AbrirBD();
+            $enlace = AbrirBaseDatos();
 
             $sentencia = "CALL ConsultarCliente('$clienteID')";
             $resultado = $enlace -> query($sentencia);
 
-            CerrarBD($enlace);
+            CerrarBaseDatos($enlace);
             return $resultado;
         }
         catch(Exception $ex)
@@ -23,12 +23,12 @@
     {
         try
         {
-            $enlace = AbrirBD();
+            $enlace = AbrirBaseDatos();
 
             $sentencia = "CALL ConsultarClientes('$clienteID')";
             $resultado = $enlace -> query($sentencia);
 
-            CerrarBD($enlace);
+            CerrarBaseDatos($enlace);
             return $resultado;
         }
         catch(Exception $ex)
@@ -41,13 +41,13 @@
     {
         try
         {
-            $enlace = AbrirBD();
+            $enlace = AbrirBaseDatos();
 
             $sentencia = "CALL ActualizarPerfil('$clienteID', '$cedula', '$nombre', '$apellido1', '$apellido2', '$rolID', 
             '$provinciaID', '$otrasSenas', '$codigoPostal', '$correo', '$telefono')";
             $resultado = $enlace -> query($sentencia);
 
-            CerrarBD($enlace);
+            CerrarBaseDatos($enlace);
             return $resultado;
         }
         catch(Exception $ex)
@@ -61,12 +61,12 @@
     {
         try
         {
-            $enlace = AbrirBD();
+            $enlace = AbrirBaseDatos();
 
             $sentencia = "CALL CambiarEstadoCliente('$clienteID')";
             $resultado = $enlace -> query($sentencia);
 
-            CerrarBD($enlace);
+            CerrarBaseDatos($enlace);
             return $resultado;
         }
         catch(Exception $ex)
@@ -79,12 +79,12 @@
     {
         try
         {
-            $enlace = AbrirBD();
+            $enlace = AbrirBaseDatos();
 
             $sentencia = "CALL ConsultarRoles()";
             $resultado = $enlace -> query($sentencia);
 
-            CerrarBD($enlace);
+            CerrarBaseDatos($enlace);
             return $resultado;
         }
         catch(Exception $ex)
@@ -96,12 +96,12 @@
     function ConsultarProvinciasModel()
     {
         try {
-            $enlace = AbrirBD();
+            $enlace = AbrirBaseDatos();
             
             $sentencia = "CALL ConsultarProvincias()";
             $resultado = $enlace->query($sentencia);
             
-            CerrarBD($enlace);
+            CerrarBaseDatos($enlace);
             return $resultado;
         } catch (Exception $ex) {
             return null;

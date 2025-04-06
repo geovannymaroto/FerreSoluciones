@@ -5,12 +5,12 @@ function ConsultarProductosModel()
 {
     try
     {
-        $enlace = AbrirBD();
+        $enlace = AbrirBaseDatos();
 
         $sentencia = "CALL ConsultarProductos()";
         $resultado = $enlace -> query($sentencia);
 
-        CerrarBD($enlace);
+        CerrarBaseDatos($enlace);
         return $resultado;
     }
     catch(Exception $ex)
@@ -23,12 +23,12 @@ function ConsultarProductoModel($ProductoID)
 {
     try
     {
-        $enlace = AbrirBD();
+        $enlace = AbrirBaseDatos();
 
         $sentencia = "CALL ConsultarProducto('$ProductoID')";
         $resultado = $enlace -> query($sentencia);
 
-        CerrarBD($enlace);
+        CerrarBaseDatos($enlace);
         return $resultado;
     }
     catch(Exception $ex)
@@ -39,11 +39,11 @@ function ConsultarProductoModel($ProductoID)
 
 function RegistrarProductoModel($nombre, $precio, $cantidad, $imagen, $categoriaID) {
     try {
-        $enlace = AbrirBD();
+        $enlace = AbrirBaseDatos();
         $sentencia = "CALL RegistrarProducto('$nombre', '$precio', '$cantidad', '$imagen', '$categoriaID')";
         $resultado = $enlace->query($sentencia);
 
-        CerrarBD($enlace);
+        CerrarBaseDatos($enlace);
         return $resultado;
     }
     catch(Exception $ex)
@@ -54,12 +54,12 @@ function RegistrarProductoModel($nombre, $precio, $cantidad, $imagen, $categoria
 
 function ActualizarProductoModel($ProductoID, $nombre, $precio, $cantidad, $imagen, $categoriaID) {
     try {
-        $enlace = AbrirBD();
+        $enlace = AbrirBaseDatos();
 
         $sentencia = "CALL ActualizarProducto('$ProductoID', '$nombre', '$precio', '$cantidad', '$imagen', '$categoriaID')";
         $resultado = $enlace->query($sentencia);
 
-        CerrarBD($enlace);
+        CerrarBaseDatos($enlace);
             return $resultado;
         }
         catch(Exception $ex)
@@ -70,12 +70,12 @@ function ActualizarProductoModel($ProductoID, $nombre, $precio, $cantidad, $imag
 
 function ConsultarCategoriasModel() {
     try {
-        $enlace = AbrirBD();
+        $enlace = AbrirBaseDatos();
 
         $sentencia = "CALL ConsultarCategorias()";
         $resultado = $enlace->query($sentencia);
 
-        CerrarBD($enlace);
+        CerrarBaseDatos($enlace);
             return $resultado;
         }
         catch(Exception $ex)
@@ -86,12 +86,12 @@ function ConsultarCategoriasModel() {
     
     function EliminarProductoModel($ProductoID) {
         try {
-            $enlace = AbrirBD();
+            $enlace = AbrirBaseDatos();
     
             $sentencia = "CALL EliminarProducto('$ProductoID')";
             $resultado = $enlace->query($sentencia);
     
-            CerrarBD($enlace);
+            CerrarBaseDatos($enlace);
             return $resultado;
         } catch (Exception $ex) {
             return false;
