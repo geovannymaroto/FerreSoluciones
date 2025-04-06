@@ -1,6 +1,6 @@
 <?php 
     include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/View/layout.php';
-    include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ClienteController.php';
+    include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProveedorController.php';
 ?>
 
 <!doctype html>
@@ -28,7 +28,7 @@
                     <div id="consultas" class="card">
                         <div class="card-body">
 
-                            <h5 class="card-title fw-semibold mb-4">Clientes de la Ferretería</h5>
+                            <h5 class="card-title fw-semibold mb-4">Proveedors de la Ferretería</h5>
                             <div class="table-responsive">
                                 <table id="example" class="table text-nowrap align-middle mb-0">
                                     <thead>
@@ -51,11 +51,11 @@
                                     </thead>
                                     <tbody class="table-group-divider">
                                         <?php
-                                            $datos = ConsultarClientes();
+                                            $datos = ConsultarProveedors();
                                             while($fila = mysqli_fetch_array($datos))
                                             {
                                                 echo "<tr>";
-                                                echo "<td>" . $fila["clienteID"] . "</td>";
+                                                echo "<td>" . $fila["ProveedorID"] . "</td>";
                                                 echo "<td>" . $fila["cedula"] . "</td>";
                                                 echo "<td>" . $fila["nombre"] . "</td>";
                                                 echo "<td>" . $fila["apellido1"] . "</td>";
@@ -69,11 +69,11 @@
                                                 echo "<td>" . $fila["correo"] . "</td>";
                                                 echo "<td>" . $fila["telefono"] . "</td>";
                                                 echo '<td>
-                                                        <a href="actualizarCliente.php?id=' . $fila["clienteID"] . '" class="btn">
+                                                        <a href="actualizarProveedor.php?id=' . $fila["ProveedorID"] . '" class="btn">
                                                             <i class="fa fa-edit" style="color:#FFC107; font-size: 1.6em;"></i>
                                                         </a>
                                                         <button id="btnOpenModal" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                                            data-id=' . $fila["clienteID"] . ' data-name="' . $fila["nombre"] . '">
+                                                            data-id=' . $fila["ProveedorID"] . ' data-name="' . $fila["nombre"] . '">
                                                             <i class="fa fa-trash" style="color:black; font-size: 1.6em;"></i>
                                                         </button>
                                                       </td>';
@@ -94,7 +94,7 @@
     <?php
         ReferenciasJS();
     ?>
-    <script src="../js/ConsultarClientes.js"></script>
+    <script src="../js/ConsultarProveedors.js"></script>
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -106,12 +106,12 @@
 
                 <form action="" method="POST">
                     <div class="modal-body">
-                        <input type="hidden" id="txtClienteID" name="txtClienteID">
-                        ¿Desea cambiar el estado del cliente <label id="lblNombre"></label> en el sistema de la ferretería?
+                        <input type="hidden" id="txtProveedorID" name="txtProveedorID">
+                        ¿Desea cambiar el estado del Proveedor <label id="lblNombre"></label> en el sistema de la ferretería?
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-primary" value="Procesar"
-                            id="btnCambiarEstadoCliente" name="btnCambiarEstadoCliente">
+                            id="btnCambiarEstadoProveedor" name="btnCambiarEstadoProveedor">
                     </div>
                 </form>
             </div>

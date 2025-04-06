@@ -82,33 +82,6 @@
                                 </div>
 
                                 <div class="mb-4">
-                                    <label class="form-label">Provincia</label>
-                                    <select id="ddlProvincias" name="ddlProvincias" class="form-control">
-                                        <?php
-                                            $provincias = ConsultarProvincias();
-                                            echo "<option value=''> Seleccione </option>";
-                                            while($fila = mysqli_fetch_array($provincias)) 
-                                            {
-                                                if($fila["provinciaID"] == $datos["provinciaID"]) 
-                                                {
-                                                    echo "<option selected value=" . $fila["provinciaID"] . ">" . $fila["provincia"] . "</option>";
-                                                } 
-                                                else 
-                                                {
-                                                    echo "<option value=" . $fila["provinciaID"] . ">" . $fila["provincia"] . "</option>";
-                                                }
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label">Otras Señas</label>
-                                    <input type="text" class="form-control" id="txtOtrasSenas" name="txtOtrasSenas"
-                                    value="<?php echo $datos["otrasSenas"] ?>">
-                                </div>
-
-                                <div class="mb-4">
                                     <label class="form-label">Código Postal</label>
                                     <input type="text" class="form-control" id="txtCodigoPostal" name="txtCodigoPostal"
                                     value="<?php echo $datos["codigoPostal"] ?>">

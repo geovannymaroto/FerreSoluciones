@@ -1,9 +1,9 @@
 <?php
     include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/View/layout.php';
-    include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ClienteController.php';
+    include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProveedorController.php';
 
     $id = $_GET["id"];
-    $datos = ConsultarCliente($id);
+    $datos = ConsultarProveedor($id);
 ?>
 
 <!doctype html>
@@ -32,7 +32,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title fw-semibold mb-4">Actualizar Cliente</h5>
+                            <h5 class="card-title fw-semibold mb-4">Actualizar Proveedor</h5>
 
                             <?php
                                 if(isset($_POST["txtMensaje"]))
@@ -43,7 +43,7 @@
 
                             <form action="" method="POST">
 
-                                <input type="hidden" id="txtClienteID" name="txtClienteID"value="<?php echo $datos["clienteID"] ?>">
+                                <input type="hidden" id="txtProveedorID" name="txtProveedorID"value="<?php echo $datos["ProveedorID"] ?>">
 
                                 <div class="mb-3">
                                     <label class="form-label">Cédula</label>
@@ -94,6 +94,33 @@
                                 </div>
 
                                 <div class="mb-4">
+                                    <label class="form-label">Provincia</label>
+                                    <select id="ddlProvincias" name="ddlProvincias" class="form-control">
+                                        <?php
+                                            $provincias = ConsultarProvincias();
+                                            echo "<option value=''> Seleccione </option>";
+                                            while($fila = mysqli_fetch_array($provincias)) 
+                                            {
+                                                if($fila["provinciaID"] == $datos["provinciaID"]) 
+                                                {
+                                                    echo "<option selected value=" . $fila["provinciaID"] . ">" . $fila["provincia"] . "</option>";
+                                                } 
+                                                else 
+                                                {
+                                                    echo "<option value=" . $fila["provinciaID"] . ">" . $fila["provincia"] . "</option>";
+                                                }
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">Otras Señas</label>
+                                    <input type="text" class="form-control" id="txtOtrasSenas" name="txtOtrasSenas"
+                                        value="<?php echo $datos["otrasSenas"] ?>">
+                                </div>
+
+                                <div class="mb-4">
                                     <label class="form-label">Código Postal</label>
                                     <input type="text" class="form-control" id="txtCodigoPostal" name="txtCodigoPostal"
                                         value="<?php echo $datos["codigoPostal"] ?>">
@@ -111,8 +138,8 @@
                                         value="<?php echo $datos["telefono"] ?>">
                                 </div>
 
-                                <input type="submit" class="btn btn-warning" value="Procesar" id="btnActualizarCliente"
-                                    name="btnActualizarCliente">
+                                <input type="submit" class="btn btn-warning" value="Procesar" id="btnActualizarProveedor"
+                                    name="btnActualizarProveedor">
                             </form>
                         </div>
                     </div>
