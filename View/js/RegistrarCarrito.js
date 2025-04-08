@@ -1,6 +1,6 @@
-function RegistrarCarritoJS(articuloID, unidades)
+function RegistrarCarritoJS(ProductoID, unidades)
 {
-    let cantidadDeseada = $("#" + articuloID).val();
+    let cantidadDeseada = $("#" + ProductoID).val();
 
     if(cantidadDeseada > unidades)
     {
@@ -20,7 +20,7 @@ function RegistrarCarritoJS(articuloID, unidades)
         dataType : "text",
         data: {
             "btnRegistrarCarrito": "FUNCION",
-            "ID_ARTICULO": articuloID,
+            "ID_Producto": ProductoID,
             "CANTIDAD": cantidadDeseada
         },
         success: function(data)

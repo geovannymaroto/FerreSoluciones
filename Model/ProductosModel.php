@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Model/BaseDatos.php';
+include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Model/BaseDatosModel.php';
 
 function ConsultarProductosModel()
 {

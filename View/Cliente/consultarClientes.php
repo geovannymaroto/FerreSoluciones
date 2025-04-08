@@ -41,7 +41,6 @@
                                             <th scope="col">Estado</th>
                                             <th scope="col">Rol</th>
                                             <th scope="col">Fecha Registro</th>
-                                            <th scope="col">Provincia</th>
                                             <th scope="col">Dirección</th>
                                             <th scope="col">Código Postal</th>
                                             <th scope="col">Correo</th>
@@ -52,32 +51,34 @@
                                     <tbody class="table-group-divider">
                                         <?php
                                             $datos = ConsultarClientes();
-                                            while($fila = mysqli_fetch_array($datos))
-                                            {
-                                                echo "<tr>";
-                                                echo "<td>" . $fila["clienteID"] . "</td>";
-                                                echo "<td>" . $fila["cedula"] . "</td>";
-                                                echo "<td>" . $fila["nombre"] . "</td>";
-                                                echo "<td>" . $fila["apellido1"] . "</td>";
-                                                echo "<td>" . $fila["apellido2"] . "</td>";
-                                                echo "<td>" . $fila["DescripcionActivo"] . "</td>";
-                                                echo "<td>" . $fila["nombreRol"] . "</td>";
-                                                echo "<td>" . $fila["fechaRegistro"] . "</td>";
-                                                echo "<td>" . $fila["nombreProvincia"] . "</td>";
-                                                echo "<td>" . $fila["otrasSenas"] . "</td>";
-                                                echo "<td>" . $fila["codigoPostal"] . "</td>";
-                                                echo "<td>" . $fila["correo"] . "</td>";
-                                                echo "<td>" . $fila["telefono"] . "</td>";
-                                                echo '<td>
-                                                        <a href="actualizarCliente.php?id=' . $fila["clienteID"] . '" class="btn">
-                                                            <i class="fa fa-edit" style="color:#FFC107; font-size: 1.6em;"></i>
-                                                        </a>
-                                                        <button id="btnOpenModal" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                                            data-id=' . $fila["clienteID"] . ' data-name="' . $fila["nombre"] . '">
-                                                            <i class="fa fa-trash" style="color:black; font-size: 1.6em;"></i>
-                                                        </button>
-                                                      </td>';
-                                                echo "</tr>";   
+
+                                            if ($datos != null && $datos->num_rows > 0) {
+                                                while ($fila = mysqli_fetch_assoc($datos)) {
+                                                    echo "<tr>";
+                                                    echo "<td>" . $fila["clienteID"] . "</td>";
+                                                    echo "<td>" . $fila["cedula"] . "</td>";
+                                                    echo "<td>" . $fila["nombre"] . "</td>";
+                                                    echo "<td>" . $fila["apellido1"] . "</td>";
+                                                    echo "<td>" . $fila["apellido2"] . "</td>";
+                                                    echo "<td>" . $fila["DescripcionActivo"] . "</td>";
+                                                    echo "<td>" . $fila["nombreRol"] . "</td>";
+                                                    echo "<td>" . $fila["fechaRegistro"] . "</td>";
+                                                    echo "<td>" . $fila["otrasSenas"] . "</td>";
+                                                    echo "<td>" . $fila["codigoPostal"] . "</td>";
+                                                    echo "<td>" . $fila["correo"] . "</td>";
+                                                    echo "<td>" . $fila["telefono"] . "</td>";
+                                                    echo '<td>
+                                                            <a href="actualizarCliente.php?id=' . $fila["clienteID"] . '" class="btn">
+                                                                <i class="fa fa-edit" style="color:#FFC107; font-size: 1.6em;"></i>
+                                                            </a>
+                                                            <button id="btnOpenModal" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                                                data-id="' . $fila["clienteID"] . '" data-name="' . $fila["nombre"] . '">
+                                                                <i class="fa fa-trash" style="color:black; font-size: 1.6em;"></i>
+                                                            </button>
+                                                          </td>';
+                                                    echo "</tr>";
+                                                }
+                                            } else {
                                             }
                                         ?>
                                     </tbody>

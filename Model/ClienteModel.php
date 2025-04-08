@@ -1,5 +1,5 @@
 <?php
-    include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Model/BaseDatos.php';
+    include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Model/BaseDatosModel.php';
 
     function ConsultarClienteModel($clienteID)
     {
@@ -36,23 +36,22 @@
             return null;
         }
     }
-    function ActualizarPerfilModel($clienteID, $cedula, $nombre, $apellido1, $apellido2, $rolID, 
-    $provinciaID, $otrasSenas, $codigoPostal, $correo, $telefono)
+
+    function ActualizarPerfilModel($clienteID, $cedula, $nombre, $apellido1, $apellido2, $rolID, $codigoPostal, $correo, $telefono)
     {
         try
         {
             $enlace = AbrirBaseDatos();
 
-            $sentencia = "CALL ActualizarPerfil('$clienteID', '$cedula', '$nombre', '$apellido1', '$apellido2', '$rolID', 
-            '$provinciaID', '$otrasSenas', '$codigoPostal', '$correo', '$telefono')";
-            $resultado = $enlace -> query($sentencia);
+            $sentencia = "CALL ActualizarCliente('$clienteID', '$cedula', '$nombre', '$apellido1', '$apellido2', $rolID, '$codigoPostal', '$correo', '$telefono')";
+            $resultado = $enlace->query($sentencia);
 
             CerrarBaseDatos($enlace);
             return $resultado;
         }
-        catch(Exception $ex)
+        catch(Exception $error)
         {
-            error_log($ex->getMessage());  // Log the error message
+        error_log($ex->getMessage());  // Log the error message
             return false;
         }
     }
@@ -93,19 +92,19 @@
         }
     }
 
-    function ConsultarProvinciasModel()
-    {
-        try {
-            $enlace = AbrirBaseDatos();
+    // function ConsultarProvinciasModel()
+    // {
+    //     try {
+    //         $enlace = AbrirBaseDatos();
             
-            $sentencia = "CALL ConsultarProvincias()";
-            $resultado = $enlace->query($sentencia);
+    //         $sentencia = "CALL ConsultarProvincias()";
+    //         $resultado = $enlace->query($sentencia);
             
-            CerrarBaseDatos($enlace);
-            return $resultado;
-        } catch (Exception $ex) {
-            return null;
-        }
-    }
+    //         CerrarBaseDatos($enlace);
+    //         return $resultado;
+    //     } catch (Exception $ex) {
+    //         return null;
+    //     }
+    // }
 
     ?>

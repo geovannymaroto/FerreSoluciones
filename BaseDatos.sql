@@ -337,7 +337,7 @@ SELECT
     IFNULL(A.precio, 0) `totalUnitario`,
     IFNULL(C.cantidadDeseada * A.precio, 0) `total`
 FROM ferresoluciones.carrito C
-INNER JOIN ferresoluciones.articulos A ON C.articuloID = A.articuloID
+INNER JOIN ferresoluciones.productos A ON C.articuloID = A.articuloID
 WHERE C.ClienteID = pClienteID;
 END ;;
 DELIMITER ;
@@ -376,34 +376,36 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarCliente`(pClienteID int(11))
+DELIMITER ;;
+DROP PROCEDURE IF EXISTS ConsultarClientes;;
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarClientes`()
 BEGIN
-
-	SELECT	C.clienteID,
-			cedula,
-			nombre,
-            apellido1,
-            apellido2,
-            contrasena,
-            C.estadoID,
-            E.nombreEstado,
-            C.rolID,
-            R.nombreRol,
-            fechaRegistro,
-            C.provinciaID as provinciaID,
-            P.provincia AS nombreProvincia,
-            otrasSenas,
-            codigoPostal,
-            correo,
-            telefono
+	SELECT	
+        C.ClienteID AS clienteID,
+		cedula,
+		nombre,
+        apellido1,
+        apellido2,
+        E.estadoID as estadoID,
+		CASE 
+            WHEN E.estadoID = 1 THEN 'Activo' 
+            WHEN E.estadoID = 2 THEN 'Inactivo' 
+        END AS DescripcionActivo,
+		C.rolID as rolID,
+        R.nombreRol AS nombreRol,
+        fechaRegistro,
+        C.provinciaID, -- si querés conservar el ID, podés dejarlo
+        otrasSenas,
+        codigoPostal,
+        correo,
+        telefono
 	FROM 	ferresoluciones.Clientes C
-	INNER JOIN ferresoluciones.Provincias P ON C.provinciaID = P.provinciaID
     INNER JOIN ferresoluciones.Roles R ON C.rolID = R.rolID
-    INNER JOIN ferresoluciones.Estados E ON C.estadoID = E.estadoID
-	WHERE 	C.ClienteID = pClienteID;
-
+    INNER JOIN ferresoluciones.Estados E ON C.estadoID = E.estadoID;
 END ;;
 DELIMITER ;
+
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
@@ -418,31 +420,35 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarClientes`(pClienteID int)
-BEGIN
+DROP PROCEDURE IF EXISTS ConsultarClientes;;
 
-	SELECT	C.ClienteID AS clienteID,
-			cedula,
-			nombre,
-            apellido1,
-            apellido2,
-            E.estadoID as estadoID,
-			CASE WHEN E.estadoID = 1 THEN 'Activo' WHEN E.estadoID = 2 THEN 'Inactivo' END AS 'DescripcionActivo',
-			C.rolID as rolID,
-            R.nombreRol AS nombreRol,
-            fechaRegistro,
-            C.provinciaID as provinciaID,
-            P.provincia AS nombreProvincia,
-            otrasSenas,
-            codigoPostal,
-            correo,
-            telefono
-	FROM 	ferresoluciones.Clientes C
-    INNER JOIN ferresoluciones.Provincias P ON C.provinciaID = P.provinciaID
-    INNER JOIN ferresoluciones.Roles R ON C.rolID = R.rolID
-    INNER JOIN ferresoluciones.Estados E ON C.estadoID = E.estadoID;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarClientes`(pClienteID INT)
+BEGIN
+	SELECT
+		C.ClienteID AS clienteID,
+		cedula,
+		nombre,
+		apellido1,
+		apellido2,
+		E.estadoID AS estadoID,
+		CASE 
+			WHEN E.estadoID = 1 THEN 'Activo' 
+			WHEN E.estadoID = 2 THEN 'Inactivo' 
+		END AS DescripcionActivo,
+		C.rolID AS rolID,
+		R.nombreRol AS nombreRol,
+		fechaRegistro,
+		C.provinciaID, -- Puedes mantener esto si necesitas el ID
+		otrasSenas,
+		codigoPostal,
+		correo,
+		telefono
+	FROM ferresoluciones.Clientes C
+	INNER JOIN ferresoluciones.Roles R ON C.rolID = R.rolID
+	INNER JOIN ferresoluciones.Estados E ON C.estadoID = E.estadoID;
 END ;;
 DELIMITER ;
+
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;

@@ -56,11 +56,11 @@
                                         echo '
                                         <div class="row mt-3">
                                             <div class="col-6">
-                                                <input id="' . $fila["articuloID"] . '" type="number" class="form-control text-center" 
+                                                <input id="' . $fila["productoID"] . '" type="number" class="form-control text-center" 
                                                 onkeypress="return false;" value="0" min="1" max="' . $fila["cantidad"] . '">
                                             </div>
                                             <div class="col-6">
-                                                <a onclick="RegistrarCarritoJS(' . $fila["articuloID"] . ', ' . $fila["cantidad"] . ');" 
+                                                <a onclick="RegistrarCarritoJS(' . $fila["productoID"] . ', ' . $fila["cantidad"] . ');" 
                                                 class="btn btn-warning w-100 fw-bold">+ Añadir</a>
                                             </div>
                                         </div>';
@@ -78,8 +78,8 @@
                         </div>
                     </div>';
                 }
-            ?>
-        </div>
+            ?> 
+        </div>  
     </div>
 </section> 
 

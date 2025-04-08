@@ -10,8 +10,8 @@ function ConsultarProductos()
     return ConsultarProductosModel();
 }
 
-function ConsultarArticulo($articuloID) {
-    $resultado = ConsultarArticuloModel($articuloID);
+function Consultarproducto($productoID) {
+    $resultado = ConsultarproductoModel($productoID);
 
     if($resultado != null && $resultado -> num_rows > 0)
     {
@@ -24,7 +24,7 @@ function ConsultarArticulo($articuloID) {
     }
 }
 
-if (isset($_POST["btnRegistrarArticulo"])) {
+if (isset($_POST["btnRegistrarproducto"])) {
     $nombre = $_POST["txtNombre"];
     $precio = $_POST["txtPrecio"];
     $cantidad = $_POST["txtCantidad"];
@@ -35,7 +35,7 @@ if (isset($_POST["btnRegistrarArticulo"])) {
     $destino = $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/View/images/Productos/' .  $_FILES["txtImagen"]["name"];
     copy($origen,$destino);
 
-    $resultado = RegistrarArticuloModel($nombre, $precio, $cantidad, $imagen, $categoriaID);
+    $resultado = RegistrarproductoModel($nombre, $precio, $cantidad, $imagen, $categoriaID);
 
     if ($resultado == true) {
         header('location: ../../View/Productos/ConsultarProductos.php');
@@ -46,9 +46,9 @@ if (isset($_POST["btnRegistrarArticulo"])) {
 }
 
 
-if(isset($_POST["btnActualizarArticulo"]))
+if(isset($_POST["btnActualizarproducto"]))
 {
-    $articuloID = $_POST["txtArticuloID"];
+    $productoID = $_POST["txtproductoID"];
     $nombre = $_POST["txtNombre"];
     $precio = $_POST["txtPrecio"];
     $cantidad = $_POST["txtCantidad"];
@@ -65,7 +65,7 @@ if(isset($_POST["btnActualizarArticulo"]))
 
     $categoriaID = $_POST["ddlCategorias"];
 
-    $resultado = ActualizarArticuloModel($articuloID, $nombre, $precio, $cantidad, $imagen, $categoriaID);
+    $resultado = ActualizarproductoModel($productoID, $nombre, $precio, $cantidad, $imagen, $categoriaID);
 
     if($resultado == true)
     {
@@ -82,9 +82,9 @@ function ConsultarCategorias() {
     return ConsultarCategoriasModel();
 }
 
-if (isset($_POST["btnEliminarArticulo"])) {
-    $articuloID = $_POST["txtArticuloID"];
-    $resultado = EliminarArticuloModel($articuloID);
+if (isset($_POST["btnEliminarproducto"])) {
+    $productoID = $_POST["txtproductoID"];
+    $resultado = EliminarproductoModel($productoID);
     if ($resultado == true) {
         header('location: ../../View/Productos/ConsultarProductos.php');
     } else {

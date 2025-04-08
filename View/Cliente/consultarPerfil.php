@@ -2,8 +2,15 @@
     include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/View/layout.php';
     include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ClienteController.php';
 
+    echo "ClienteID desde sesión: " . $_SESSION["ClienteID"];
+                                                                               
     $id = $_SESSION["ClienteID"];
     $datos = ConsultarCliente($id);
+    if (!$datos || !is_array($datos)) {
+        echo '<div class="alert alert-info">No se ha podido obtener la información del cliente correctamente.</div>';
+        return;
+    }
+    
 
 ?>
 
