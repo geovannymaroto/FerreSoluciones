@@ -1,26 +1,11 @@
 <?php
-<<<<<<< HEAD
-
-
 include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/View/layout.php';
-include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProductosController.php';
-
+include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ArticulosController.php';
 
 $id = $_GET["id"];
-$datos = ConsultarProducto($id);
-
+$datos = ConsultarArticulo($id);
 ?>
 
-
-=======
-include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/View/layout.php';
-include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProductosController.php';
-
-$id = $_GET["id"];
-$datos = ConsultarProducto($id);
-?>
-
->>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
 <!doctype html>
 <html lang="es">
 
@@ -48,11 +33,7 @@ $datos = ConsultarProducto($id);
                             ?>
 
                             <form action="" method="POST" enctype="multipart/form-data">
-<<<<<<< HEAD
-                                <input type="hidden" id="txtProductoID" name="txtProductoID" value="<?php echo $datos["productoID"] ?>">
-=======
-                                <input type="hidden" id="txtproductoID" name="txtproductoID" value="<?php echo $datos["productoID"] ?>">
->>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
+                                <input type="hidden" id="txtArticuloID" name="txtArticuloID" value="<?php echo $datos["articuloID"] ?>">
 
                                 <div class="mb-3">
                                     <label class="form-label">Nombre del producto</label>
@@ -87,31 +68,19 @@ $datos = ConsultarProducto($id);
                                 <div class="mb-4">
                                     <label class="form-label">Categoría</label>
                                     <select id="ddlCategorias" name="ddlCategorias" class="form-control" required>
+                                        <option value="">Seleccione una categoría</option>
                                         <?php
-                                            $categorias = ConsultarCategorias();
-                                            echo "<option value=''> Seleccione </option>";
-                                            while($fila = mysqli_fetch_array($categorias)) 
-                                            {
-                                                if($fila["categoriaID"] == $datos["categoriaID"]) 
-                                                {
-                                                    echo "<option selected value=" . $fila["categoriaID"] . ">" . $fila["nombre"] . "</option>";
-                                                } 
-                                                else 
-                                                {
-                                                    echo "<option value=" . $fila["categoriaID"] . ">" . $fila["nombre"] . "</option>";
-                                                }
-                                            }
+                                        $categorias = ConsultarCategorias();
+                                        while ($fila = mysqli_fetch_array($categorias)) {
+                                            $selected = ($fila["categoriaID"] == $datos["categoriaID"]) ? "selected" : "";
+                                            echo "<option value='{$fila["categoriaID"]}' $selected>{$fila["nombre"]}</option>";
+                                        }
                                         ?>
                                     </select>
                                 </div>
 
-<<<<<<< HEAD
-                                <input type="submit" class="btn btn-warning fw-bold" value="Actualizar Producto" id="btnActualizarProducto"
-                                       name="btnActualizarProducto">
-=======
-                                <input type="submit" class="btn btn-warning fw-bold" value="Actualizar Producto" id="btnActualizarproducto"
-                                       name="btnActualizarproducto">
->>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
+                                <input type="submit" class="btn btn-warning fw-bold" value="Actualizar Producto" id="btnActualizarArticulo"
+                                       name="btnActualizarArticulo">
                             </form>
                         </div>
                     </div>

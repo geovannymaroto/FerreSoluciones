@@ -93,12 +93,15 @@
 
                                 </div>
                                 <div class="mb-4">
+<<<<<<< HEAD
                                     <label class="form-label">Direccion</label>
                                     <input type="text" class="form-control" id="txtOtrasSenas" name="txtOtrasSenas"
                                         value="<?php echo $datos["otrasSenas"] ?>">
                                 </div>
 
                                 <div class="mb-4">
+=======
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
                                     <label class="form-label">Código Postal</label>
                                     <input type="text" class="form-control" id="txtCodigoPostal" name="txtCodigoPostal"
                                         value="<?php echo $datos["codigoPostal"] ?>">

@@ -2,7 +2,11 @@
     include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Model/LoginModel.php';
 
     if(session_status() == PHP_SESSION_NONE) {
+<<<<<<< HEAD
         session_start(); 
+=======
+        session_start();
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
     }
 
     if(isset($_POST["btnRegistrarCliente"]))
@@ -17,11 +21,19 @@
         $correo = $_POST["txtCorreo"];
         
 
+<<<<<<< HEAD
         $resultado = RegistrarClienteModel($cedula, $nombre, $apellido1, $apellido2, $contrasena, $codigoPostal, $correo, $telefono);
 
         if($resultado == true)
         {
             $_SESSION["Mensaje"] = "¡Inicio de sesión exitoso!";
+=======
+        $resultado = RegistrarClienteModel($cedula, $nombre, $apellido1, $apellido2, $contrasena, 
+     $codigoPostal, $correo, $telefono);
+
+        if($resultado == true)
+        {
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
             header('location: ../../View/Login/inicioSesion.php');
         }
         else
@@ -43,9 +55,15 @@
             $_SESSION["NombreCliente"] = $datos["Nombre"];
             $_SESSION["ClienteID"] = $datos["ClienteID"];
             $_SESSION["RolID"] = $datos["rolID"];
+<<<<<<< HEAD
+=======
+
+            $_POST["txtMensaje"] = "Su información se ha validado correctamente";
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
 
             $_POST["txtMensaje"] = "Su información se ha validado correctamente";
             header('location: ../../View/Login/home.php');
+
         }
         else
         {

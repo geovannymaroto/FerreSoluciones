@@ -28,6 +28,7 @@ function ConsultarProductoModel($ProductoID)
         $sentencia = "CALL ConsultarProducto('$ProductoID')";
         $resultado = $enlace -> query($sentencia);
 
+<<<<<<< HEAD
         if ($resultado && $resultado->num_rows > 0) {
             $fila = mysqli_fetch_array($resultado); // ✅
         } else {
@@ -36,6 +37,10 @@ function ConsultarProductoModel($ProductoID)
 
         CerrarBaseDatos($enlace);
         return $fila; // ✅ Devuelve directamente el array
+=======
+        CerrarBaseDatos($enlace);
+        return $resultado;
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
     }
     catch(Exception $ex)
     {

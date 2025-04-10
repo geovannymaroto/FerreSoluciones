@@ -2,6 +2,7 @@
     include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Model/BaseDatosModel.php';
 
 
+<<<<<<< HEAD
     function RegistrarClienteModel($cedula, $nombre, $apellido1, $apellido2, $contrasena, $codigoPostal, $correo, $telefono)
     {
         try {
@@ -17,6 +18,26 @@
             return false;
         }
     }
+=======
+    function RegistrarClienteModel($cedula, $nombre, $apellido1, $apellido2, $contrasena, $provinciaID, $otrasSenas, $codigoPostal, $correo, $telefono) 
+    {
+        try 
+        {
+            $enlace = AbrirBaseDatos();
+    
+            $sentencia = "CALL RegistrarCliente('$cedula', '$nombre', '$apellido1', '$apellido2', '$contrasena', '$otrasSenas', '$codigoPostal', '$correo', '$telefono')";
+            $resultado = $enlace->query($sentencia);
+    
+            CerrarBaseDatos($enlace);
+            return $resultado;
+        } 
+        catch (Exception $ex) 
+        {
+            return false;
+        }
+    }
+
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
     function IniciarSesionModel($correo, $contrasena)
     {
         try

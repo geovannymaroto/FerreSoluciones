@@ -3,7 +3,13 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/LoginContr
 include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/CarritoController.php';
 
 
+<<<<<<< HEAD
 
+=======
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
 
 if(isset($_SESSION["NombreCliente"]))
 {
@@ -29,10 +35,17 @@ function MostrarMenu()
                                 </a>
                                 <!-- Botón Clientes -->
                                 <a href="../Productos/ConsultarProductos.php" class="flex-c-m trans-04 p-lr-25"> 
+<<<<<<< HEAD
                                     Productos
                                 </a>
                                 <a href="../Proveedor/ConsultarProveedor.php" class="flex-c-m trans-04 p-lr-25">
                                     Proveedores
+=======
+                                    Artículos
+                                </a>
+                                <a href="../Sugerencias/ConsultarSugerencia.php" class="flex-c-m trans-04 p-lr-25">
+                                    Sugerencias
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
                                 </a>
 
                             </div>
@@ -90,7 +103,11 @@ if (isset($_SESSION["NombreCliente"])) {
                                 <a href="../Cliente/cambiarAcceso.php">Seguridad</a>
                             </li>
                             <li>
+<<<<<<< HEAD
                                 <a href="../Proveedor/ConsultarProveedor.php">Proveedores</a>
+=======
+                                <a href="../Sugerencias/CrearSugerencia.php">Servicio al Cliente</a>
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
                             </li>
                             <li>
                                 <a href="../Carrito/ConsultarCarrito.php">Mi Carrito</a>
@@ -168,7 +185,11 @@ function ReferenciasCSS()
 	            <meta charset="UTF-8">
 	            <meta name="viewport" content="width=device-width, initial-scale=1">
                 <meta charset="utf-8">
+<<<<<<< HEAD
                 <title>Ferre Soluciones</title>
+=======
+                <title>Tienda Ambiente</title>
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
                 <link rel="shortcut icon" type="image/png" href="../images/FerreTech.png" />
                 <link rel="stylesheet" href="../css/proyecto.css" />
                 <link rel="stylesheet" href="../css/styles.min.css" />

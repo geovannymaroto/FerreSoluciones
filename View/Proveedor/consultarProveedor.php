@@ -1,31 +1,56 @@
 <?php 
     include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/View/layout.php';
+<<<<<<< HEAD
     include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProveedoresController.php';
+=======
+    include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProveedorController.php';
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
 ?>
 
 <!doctype html>
 <html lang="es">
 
+<<<<<<< HEAD
 <?php ReferenciasCSS(); ?>
+=======
+<?php
+    ReferenciasCSS();
+?>
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
 
 <body class="page-wrapper radial-gradient">
     <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed"> 
 
+<<<<<<< HEAD
         <?php MostrarMenu(); ?>
 
         <div class="body-wrapper">
         <?php MostrarHeader(); ?> 
+=======
+        <?php
+            MostrarMenu();
+        ?>
+
+        <div class="body-wrapper">
+        <?php
+            MostrarHeader();
+        ?> 
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
             <div class="container-fluid">
                 <div class="row">
 
                     <div id="consultas" class="card">
                         <div class="card-body">
 
+<<<<<<< HEAD
                             <h5 class="card-title fw-semibold mb-4">Proveedores de la Ferretería</h5>
                             <a href="RegistarProveedor.php" class="btn btn-warning fw-bold mb-4">
                                 <i class="fa fa-plus me-2"></i> Registrar Proveedor
                             </a>
+=======
+                            <h5 class="card-title fw-semibold mb-4">Proveedors de la Ferretería</h5>
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
                             <div class="table-responsive">
                                 <table id="example" class="table text-nowrap align-middle mb-0">
                                     <thead>
@@ -33,16 +58,30 @@
                                             <th scope="col">ID</th>
                                             <th scope="col">Cédula</th>
                                             <th scope="col">Nombre</th>
+<<<<<<< HEAD
                                             <th scope="col">Correo</th>
                                             <th scope="col">Teléfono</th>
                                             <th scope="col">Dirección</th>
                                             <th scope="col">Estado</th>
                                             <th scope="col">Fecha Registro</th>
+=======
+                                            <th scope="col">Apellido</th>
+                                            <th scope="col">Apellido2</th>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Rol</th>
+                                            <th scope="col">Fecha Registro</th>
+                                            <th scope="col">Provincia</th>
+                                            <th scope="col">Dirección</th>
+                                            <th scope="col">Código Postal</th>
+                                            <th scope="col">Correo</th>
+                                            <th scope="col">Teléfono</th>
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
                                             <th scope="col">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-group-divider">
                                         <?php
+<<<<<<< HEAD
                                             $datos = ConsultarProveedores();
                                             while($fila = mysqli_fetch_array($datos))
                                             {
@@ -61,6 +100,31 @@
                                                         </a>
                                                         <button id="btnOpenModal" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                                                             data-id="' . $fila["proveedorID"] . '" data-name="' . $fila["nombre"] . '">
+=======
+                                            $datos = ConsultarProveedors();
+                                            while($fila = mysqli_fetch_array($datos))
+                                            {
+                                                echo "<tr>";
+                                                echo "<td>" . $fila["ProveedorID"] . "</td>";
+                                                echo "<td>" . $fila["cedula"] . "</td>";
+                                                echo "<td>" . $fila["nombre"] . "</td>";
+                                                echo "<td>" . $fila["apellido1"] . "</td>";
+                                                echo "<td>" . $fila["apellido2"] . "</td>";
+                                                echo "<td>" . $fila["DescripcionActivo"] . "</td>";
+                                                echo "<td>" . $fila["nombreRol"] . "</td>";
+                                                echo "<td>" . $fila["fechaRegistro"] . "</td>";
+                                                echo "<td>" . $fila["nombreProvincia"] . "</td>";
+                                                echo "<td>" . $fila["otrasSenas"] . "</td>";
+                                                echo "<td>" . $fila["codigoPostal"] . "</td>";
+                                                echo "<td>" . $fila["correo"] . "</td>";
+                                                echo "<td>" . $fila["telefono"] . "</td>";
+                                                echo '<td>
+                                                        <a href="actualizarProveedor.php?id=' . $fila["ProveedorID"] . '" class="btn">
+                                                            <i class="fa fa-edit" style="color:#FFC107; font-size: 1.6em;"></i>
+                                                        </a>
+                                                        <button id="btnOpenModal" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                                            data-id=' . $fila["ProveedorID"] . ' data-name="' . $fila["nombre"] . '">
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
                                                             <i class="fa fa-trash" style="color:black; font-size: 1.6em;"></i>
                                                         </button>
                                                       </td>';
@@ -78,10 +142,18 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <?php ReferenciasJS(); ?>
     <script src="../js/ConsultarProveedores.js"></script>
 
     <!-- Modal para eliminar -->
+=======
+    <?php
+        ReferenciasJS();
+    ?>
+    <script src="../js/ConsultarProveedors.js"></script>
+
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content" style="width: 700px;">
@@ -93,7 +165,11 @@
                 <form action="" method="POST">
                     <div class="modal-body">
                         <input type="hidden" id="txtProveedorID" name="txtProveedorID">
+<<<<<<< HEAD
                         ¿Desea eliminar el proveedor <label id="lblNombre"></label> en el sistema de la ferretería?
+=======
+                        ¿Desea cambiar el estado del Proveedor <label id="lblNombre"></label> en el sistema de la ferretería?
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-primary" value="Procesar"
@@ -105,4 +181,8 @@
     </div>
 
 </body>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
 </html>

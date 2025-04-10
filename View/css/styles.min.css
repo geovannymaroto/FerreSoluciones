@@ -16927,11 +16927,25 @@ ul {
 .radial-gradient {
   position: relative;
 }
+<<<<<<< HEAD
 body {
   background: radial-gradient(circle, #fff9c4, #ffe082, #ffca28, #ffb300);
 }
 
 
+=======
+.radial-gradient::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0.3;
+  background: radial-gradient(rgb(210, 241, 223), rgb(211, 215, 250), rgb(186, 216, 244)) 0% 0%/400% 400%;
+  -webkit-animation: 15s ease 0s infinite normal none running gradient;
+          animation: 15s ease 0s infinite normal none running gradient;
+}
+
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
 .timeline-widget .timeline-item {
   min-height: 70px;
 }
@@ -16955,5 +16969,9 @@ body {
 }
 .timeline-widget .timeline-item .timeline-badge.badge-primary {
   border: 2px solid #2952ff;
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357

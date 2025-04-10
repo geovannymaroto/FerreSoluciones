@@ -1,6 +1,6 @@
 <?php
 include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/View/layout.php';
-include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProductosController.php';
+include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ArticulosController.php';
 ?>
 
 <!doctype html>
@@ -24,7 +24,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProductosC
 
                             <h5 class="card-title fw-semibold mb-4">Consulta de Productos Ferreteros</h5>
 
-                            <a href="RegistarProductos.php" class="btn btn-warning fw-bold mb-4">
+                            <a href="RegistrarArticulos.php" class="btn btn-warning fw-bold mb-4">
                                 <i class="fa fa-plus me-2"></i> Registrar Producto
                             </a>
 
@@ -43,55 +43,27 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProductosC
                                     </thead>
                                     <tbody class="table-group-divider">
                                         <?php
-<<<<<<< HEAD
-                                            $datos = Consultarproductos();
-                                            if ($datos != null && $datos->num_rows > 0) {
-                                            while ($fila = mysqli_fetch_array($datos)) {
-                                                echo "<tr>";
-                                                echo "<td>" . $fila["productoID"] . "</td>";
-                                                echo "<td>" . $fila["nombre"] . "</td>";
-                                                echo "<td>₡ " . number_format($fila["precio"], 2) . "</td>";
-                                                echo "<td>" . $fila["cantidad"] . "</td>";
-                                                echo "<td><img width='125' height='100' src='" . $fila["imagen"] . "' alt='Imagen'></td>";
-                                                echo "<td>" . $fila["nombreCategoria"] . "</td>";
-                                                echo '<td>
-                                                        <a href="ActualizarProductos.php?id=' . $fila["productoID"] . '" class="btn">
-                                                            <i class="fa fa-edit" style="color:#FFC107; font-size: 1.6em;"></i>
-                                                        </a>
-
-                                                        <button id="btnOpenModal" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                                            data-id="' . $fila["productoID"] . '" data-name="' . $fila["nombre"] . '">
-                                                            <i class="fa fa-trash" style="color:black; font-size: 1.6em;"></i>
-                                                        </button>
-                                                    </td>';
-                                                echo "</tr>";
-                                            }
-                                        }else{
-
-                                            }
-=======
-                                        $datos = Consultarproductos();
+                                        $datos = ConsultarArticulos();
                                         while ($fila = mysqli_fetch_array($datos)) {
                                             echo "<tr>";
-                                            echo "<td>" . $fila["productoID"] . "</td>";
+                                            echo "<td>" . $fila["articuloID"] . "</td>";
                                             echo "<td>" . $fila["nombre"] . "</td>";
                                             echo "<td>₡ " . number_format($fila["precio"], 2) . "</td>";
                                             echo "<td>" . $fila["cantidad"] . "</td>";
                                             echo "<td><img width='125' height='100' src='" . $fila["imagen"] . "' alt='Imagen'></td>";
                                             echo "<td>" . $fila["nombreCategoria"] . "</td>";
                                             echo '<td>
-                                                    <a href="ActualizarProductos.php?id=' . $fila["productoID"] . '" class="btn">
+                                                    <a href="ActualizarArticulo.php?id=' . $fila["articuloID"] . '" class="btn">
                                                         <i class="fa fa-edit" style="color:#FFC107; font-size: 1.6em;"></i>
                                                     </a>
 
                                                     <button id="btnOpenModal" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                                        data-id="' . $fila["productoID"] . '" data-name="' . $fila["nombre"] . '">
+                                                        data-id="' . $fila["articuloID"] . '" data-name="' . $fila["nombre"] . '">
                                                         <i class="fa fa-trash" style="color:black; font-size: 1.6em;"></i>
                                                     </button>
                                                   </td>';
                                             echo "</tr>";
                                         }
->>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
                                         ?>
                                     </tbody>
                                 </table>
@@ -105,7 +77,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProductosC
     </div>
 
     <?php ReferenciasJS(); ?>
-    <script src="../js/Consultarproductos.js"></script>
+    <script src="../js/ConsultarArticulos.js"></script>
 
     <!-- Modal para eliminar -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -119,17 +91,12 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProductosC
 
                 <form action="" method="POST">
                     <div class="modal-body">
-<<<<<<< HEAD
-                        <input type="hidden" id="txtProductoID" name="txtProductoID">
-                        ¿Desea eliminar el producto: <label id="lblNombre" class="fw-bold text-danger"></label>?
-=======
-                        <input type="hidden" id="txtproductoID" name="txtproductoID">
+                        <input type="hidden" id="txtArticuloID" name="txtArticuloID">
                         ¿Desea eliminar el artículo: <label id="lblNombre" class="fw-bold text-danger"></label>?
->>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-warning fw-bold" value="Eliminar"
-                            id="btnEliminarproducto" name="btnEliminarproducto">
+                            id="btnEliminarArticulo" name="btnEliminarArticulo">
                     </div>
                 </form>
             </div>
