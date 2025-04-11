@@ -2,8 +2,15 @@
     include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/View/layout.php';
     include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ClienteController.php';
 
+    echo "ClienteID desde sesión: " . $_SESSION["ClienteID"];
+                                                                               
     $id = $_SESSION["ClienteID"];
     $datos = ConsultarCliente($id);
+    if (!$datos || !is_array($datos)) {
+        echo '<div class="alert alert-info">No se ha podido obtener la información del cliente correctamente.</div>';
+        return;
+    }
+    
 
 ?>
 
@@ -79,33 +86,6 @@
                                     <input type="text" class="form-control" id="txtFechaRegistro" name="txtFechaRegistro" readOnly="true"
                                     style="background-color: #B0C4DE"
                                     value="<?php echo $datos["fechaRegistro"] ?>">
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label">Provincia</label>
-                                    <select id="ddlProvincias" name="ddlProvincias" class="form-control">
-                                        <?php
-                                            $provincias = ConsultarProvincias();
-                                            echo "<option value=''> Seleccione </option>";
-                                            while($fila = mysqli_fetch_array($provincias)) 
-                                            {
-                                                if($fila["provinciaID"] == $datos["provinciaID"]) 
-                                                {
-                                                    echo "<option selected value=" . $fila["provinciaID"] . ">" . $fila["provincia"] . "</option>";
-                                                } 
-                                                else 
-                                                {
-                                                    echo "<option value=" . $fila["provinciaID"] . ">" . $fila["provincia"] . "</option>";
-                                                }
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-
-                                <div class="mb-4">
-                                    <label class="form-label">Otras Señas</label>
-                                    <input type="text" class="form-control" id="txtOtrasSenas" name="txtOtrasSenas"
-                                    value="<?php echo $datos["otrasSenas"] ?>">
                                 </div>
 
                                 <div class="mb-4">

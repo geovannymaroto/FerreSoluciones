@@ -64,14 +64,11 @@
         $apellido1 = $_POST["txtApellido1"]; 
         $apellido2 = $_POST["txtApellido2"]; 
         $rolID = $_POST["txtRol"];
-        $provinciaID = $_POST["ddlProvincias"]; 
-        $otrasSenas = $_POST["txtOtrasSenas"];
         $codigoPostal = $_POST["txtCodigoPostal"]; 
         $correo = $_POST["txtCorreo"];
         $telefono = $_POST["txtTelefono"];
 
-        $resultado = ActualizarPerfilModel($_SESSION["ClienteID"],$cedula,$nombre,$apellido1,$apellido2,$rolID,
-        $provinciaID,$otrasSenas,$codigoPostal,$correo,$telefono);
+        $resultado = ActualizarPerfilModel($_SESSION["ClienteID"],$cedula,$nombre,$apellido1,$apellido2,$rolID,$codigoPostal,$correo,$telefono);
         
         if($resultado == true)
         {
@@ -92,14 +89,11 @@
             $apellido1 = $_POST["txtApellido1"]; 
             $apellido2 = $_POST["txtApellido2"]; 
             $rolID = $_POST["ddlRoles"];
-            $provinciaID = $_POST["ddlProvincias"]; 
-            $otrasSenas = $_POST["txtOtrasSenas"];
             $codigoPostal = $_POST["txtCodigoPostal"]; 
             $correo = $_POST["txtCorreo"];
             $telefono = $_POST["txtTelefono"];
     
-            $resultado = ActualizarPerfilModel($clienteID, $cedula, $nombre, $apellido1, $apellido2, $rolID, 
-            $provinciaID, $otrasSenas, $codigoPostal, $correo, $telefono);
+            $resultado = ActualizarPerfilModel($clienteID, $cedula, $nombre, $apellido1, $apellido2, $rolID, $codigoPostal, $correo, $telefono);
             
             if($resultado == true)
             {
@@ -137,13 +131,4 @@
             }
         }
 
-        function ConsultarProvincias()
-        {
-            $resultado = ConsultarProvinciasModel();
-            
-            if ($resultado != null && $resultado->num_rows > 0) {
-                return $resultado;
-            }
-        }
-    
     ?>

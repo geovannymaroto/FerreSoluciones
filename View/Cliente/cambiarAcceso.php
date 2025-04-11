@@ -1,6 +1,7 @@
 <?php
     include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/View/layout.php';
     include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ClienteController.php';
+    
 ?>
 
 <!doctype html>
