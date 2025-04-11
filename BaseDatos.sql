@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: ferresoluciones
@@ -366,6 +367,171 @@ BEGIN
         correo = pCorreo,
         telefono = pTelefono
     WHERE clienteID = pClienteID;
+=======
+CREATE DATABASE IF NOT EXISTS ferresoluciones CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE ferresoluciones;
+
+-- =========================
+-- TABLA: categorias
+-- =========================
+CREATE TABLE categorias (
+    categoriaID INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL
+);
+
+INSERT INTO categorias (nombre) VALUES
+('Herramientas manuales'),
+('Materiales de construcción'),
+
+('Tornillería y fijación'),
+('Pinturas y acabados'),
+('Electricidad'),
+('Plomería'),
+('Equipos de protección personal'),
+('Ferretería general');
+
+-- =========================
+-- TABLA: productos
+-- =========================
+CREATE TABLE productos (
+    productoID INT AUTO_INCREMENT PRIMARY KEY,	
+    nombre VARCHAR(100) NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
+    cantidad INT NOT NULL,
+    imagen VARCHAR(1000) NOT NULL,
+    categoriaID INT NOT NULL,
+    FOREIGN KEY (categoriaID) REFERENCES categorias(categoriaID)
+);
+
+INSERT INTO productos (nombre, precio, cantidad, imagen, categoriaID) VALUES
+('Martillo de carpintero', 3500.00, 20, '/img/martillo.jpg', 1),
+('Caja de tornillos 1/4', 1500.00, 100, '/img/tornillos.jpg', 3),
+('Brocha 3 pulgadas', 800.00, 50, '/img/brocha.jpg', 4),
+('Pintura acrílica blanca 1 galón', 8500.00, 30, '/img/pintura.jpg', 4),
+('Casco de seguridad', 6000.00, 15, '/img/casco.jpg', 7);
+
+-- =========================
+-- TABLA: roles
+-- =========================
+CREATE TABLE roles (
+    rolID INT AUTO_INCREMENT PRIMARY KEY,
+    nombreRol VARCHAR(25) NOT NULL
+);
+
+INSERT INTO roles (nombreRol) VALUES
+('Administrador'), ('Cliente');
+
+-- =========================
+-- TABLA: estados
+-- =========================
+CREATE TABLE estados (
+    estadoID INT AUTO_INCREMENT PRIMARY KEY,
+    nombreEstado VARCHAR(25) NOT NULL
+);
+
+INSERT INTO estados (nombreEstado) VALUES
+('Activo'), ('Inactivo');
+
+-- =========================
+-- TABLA: clientes (sin provincia)
+-- =========================
+CREATE TABLE clientes (
+    clienteID INT AUTO_INCREMENT PRIMARY KEY,
+    cedula VARCHAR(9) NOT NULL UNIQUE,
+    nombre VARCHAR(50) NOT NULL,
+    apellido1 VARCHAR(50) NOT NULL,
+    apellido2 VARCHAR(50) NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
+    estadoID INT NOT NULL,
+    rolID INT NOT NULL,
+    fechaRegistro DATETIME NOT NULL,
+    otrasSenas VARCHAR(200),
+    codigoPostal VARCHAR(10),
+    correo VARCHAR(50) NOT NULL UNIQUE,
+    telefono VARCHAR(15) NOT NULL UNIQUE,
+    FOREIGN KEY (estadoID) REFERENCES estados(estadoID),
+    FOREIGN KEY (rolID) REFERENCES roles(rolID)
+);
+
+-- =========================
+-- TABLA: carrito
+-- =========================
+CREATE TABLE carrito (
+    carritoID INT AUTO_INCREMENT PRIMARY KEY,
+    productoID INT,
+    clienteID INT,
+    cantidadDeseada INT,
+    fecha DATETIME,
+    FOREIGN KEY (productoID) REFERENCES productos(productoID),
+    FOREIGN KEY (clienteID) REFERENCES clientes(clienteID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- =========================
+-- TABLA: maestro (factura)
+-- =========================
+CREATE TABLE maestro (
+    maestroID INT AUTO_INCREMENT PRIMARY KEY,
+    fecha DATETIME,
+    clienteID INT,
+    total DECIMAL(18,2),
+    FOREIGN KEY (clienteID) REFERENCES clientes(clienteID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- =========================
+-- TABLA: detalle (detalle de factura)
+-- =========================
+CREATE TABLE detalle (
+    detalleID INT AUTO_INCREMENT PRIMARY KEY,
+    maestroID INT,
+    productoID INT,
+    cantidad INT,
+    precio DECIMAL(18,2),
+    total DECIMAL(18,2),
+    FOREIGN KEY (maestroID) REFERENCES maestro(maestroID),
+    FOREIGN KEY (productoID) REFERENCES productos(productoID)
+);
+
+-- =========================
+-- TABLA: consultas/sugerencias
+-- =========================
+CREATE TABLE consultas (
+    consultaID INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(500) NOT NULL,
+    clienteID INT,
+    nombreCliente VARCHAR(100),
+    FOREIGN KEY (clienteID) REFERENCES clientes(clienteID) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- =========================
+-- TABLA: metodos de pago
+-- =========================
+CREATE TABLE metodospago (
+    metodoPagoID INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL
+);
+
+INSERT INTO metodospago (nombre) VALUES
+('Efectivo'), ('Tarjeta de crédito'), ('Transferencia bancaria');
+
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarProducto`(
+    IN pProductoID INT,
+    IN pNombre VARCHAR(100),
+    IN pPrecio DECIMAL(10,2),
+    IN pCantidad INT,
+    IN pImagen VARCHAR(1000),
+    IN pCategoriaID INT
+)
+BEGIN
+    UPDATE articulos
+    SET 
+        nombre = pNombre,
+        precio = pPrecio,
+        cantidad = pCantidad,
+        imagen = CASE WHEN pImagen = '' THEN imagen ELSE pImagen END,
+        categoriaID = pCategoriaID
+    WHERE articuloID = pProductoID;
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -439,6 +605,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+<<<<<<< HEAD
 /*!50003 DROP PROCEDURE IF EXISTS `ActualizarProducto` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -505,6 +672,8 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+=======
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 /*!50003 DROP PROCEDURE IF EXISTS `CambiarEstadoCliente` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -529,6 +698,67 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+<<<<<<< HEAD
+=======
+/*!50003 DROP PROCEDURE IF EXISTS `ConsultarProducto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarProducto`(
+    IN pProductoID INT
+)
+BEGIN
+    SELECT 
+        articuloID, 
+        nombre, 
+        precio, 
+        cantidad, 
+        imagen, 
+        categoriaID
+    FROM articulos
+    WHERE articuloID = pProductoID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ConsultarProductos` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarProductos`()
+BEGIN
+    SELECT 
+        A.articuloID, 
+        A.nombre, 
+        A.precio, 
+        A.cantidad, 
+        A.imagen, 
+        A.categoriaID,
+        C.nombre AS nombreCategoria
+    FROM articulos A
+    INNER JOIN categorias C 
+        ON A.categoriaID = C.categoriaID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 /*!50003 DROP PROCEDURE IF EXISTS `ConsultarCarrito` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -544,13 +774,21 @@ BEGIN
 
 SELECT 
     C.carritoID,
+<<<<<<< HEAD
     C.productoID,
+=======
+    C.articuloID,
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
     A.nombre,
     IFNULL(C.cantidadDeseada, 0) `cantidadDeseada`,
     IFNULL(A.precio, 0) `totalUnitario`,
     IFNULL(C.cantidadDeseada * A.precio, 0) `total`
 FROM ferresoluciones.carrito C
+<<<<<<< HEAD
 INNER JOIN ferresoluciones.productos A ON C.productoID = A.productoID
+=======
+INNER JOIN ferresoluciones.productos A ON C.articuloID = A.articuloID
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 WHERE C.ClienteID = pClienteID;
 END ;;
 DELIMITER ;
@@ -589,6 +827,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
+<<<<<<< HEAD
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarCliente`(pClienteID INT)
 BEGIN
   SELECT
@@ -613,6 +852,38 @@ BEGIN
   WHERE C.ClienteID = pClienteID;
 END ;;
 DELIMITER ;
+=======
+DELIMITER ;;
+DROP PROCEDURE IF EXISTS ConsultarClientes;;
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarClientes`()
+BEGIN
+	SELECT	
+        C.ClienteID AS clienteID,
+		cedula,
+		nombre,
+        apellido1,
+        apellido2,
+        E.estadoID as estadoID,
+		CASE 
+            WHEN E.estadoID = 1 THEN 'Activo' 
+            WHEN E.estadoID = 2 THEN 'Inactivo' 
+        END AS DescripcionActivo,
+		C.rolID as rolID,
+        R.nombreRol AS nombreRol,
+        fechaRegistro,
+        C.provinciaID, -- si querés conservar el ID, podés dejarlo
+        otrasSenas,
+        codigoPostal,
+        correo,
+        telefono
+	FROM 	ferresoluciones.Clientes C
+    INNER JOIN ferresoluciones.Roles R ON C.rolID = R.rolID
+    INNER JOIN ferresoluciones.Estados E ON C.estadoID = E.estadoID;
+END ;;
+DELIMITER ;
+
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
@@ -627,6 +898,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
+<<<<<<< HEAD
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarClientes`(pClienteID INT)
 BEGIN
     SELECT  
@@ -652,6 +924,37 @@ BEGIN
     INNER JOIN ferresoluciones.Estados E ON C.estadoID = E.estadoID;
 END ;;
 DELIMITER ;
+=======
+DROP PROCEDURE IF EXISTS ConsultarClientes;;
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarClientes`(pClienteID INT)
+BEGIN
+	SELECT
+		C.ClienteID AS clienteID,
+		cedula,
+		nombre,
+		apellido1,
+		apellido2,
+		E.estadoID AS estadoID,
+		CASE 
+			WHEN E.estadoID = 1 THEN 'Activo' 
+			WHEN E.estadoID = 2 THEN 'Inactivo' 
+		END AS DescripcionActivo,
+		C.rolID AS rolID,
+		R.nombreRol AS nombreRol,
+		fechaRegistro,
+		C.provinciaID, -- Puedes mantener esto si necesitas el ID
+		otrasSenas,
+		codigoPostal,
+		correo,
+		telefono
+	FROM ferresoluciones.Clientes C
+	INNER JOIN ferresoluciones.Roles R ON C.rolID = R.rolID
+	INNER JOIN ferresoluciones.Estados E ON C.estadoID = E.estadoID;
+END ;;
+DELIMITER ;
+
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
@@ -684,6 +987,61 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+<<<<<<< HEAD
+=======
+/*!50003 DROP PROCEDURE IF EXISTS `ConsultarDetalleFacturas` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarDetalleFacturas`(pMaestroID int(11))
+BEGIN
+
+    SELECT  
+        D.detalleID,
+        A.Nombre,
+        D.Cantidad,
+        D.Precio,
+        D.Total
+    FROM 
+        ferresoluciones.Detalle D
+    INNER JOIN 
+        ferresoluciones.Productos A ON A.articuloID = D.articuloID
+    WHERE 
+        D.MaestroID = pMaestroID;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ConsultarEstados` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarEstados`()
+BEGIN
+    SELECT estadoID, nombreEstado 
+    FROM estados;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 /*!50003 DROP PROCEDURE IF EXISTS `ConsultarFacturas` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -710,7 +1068,11 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+<<<<<<< HEAD
 /*!50003 DROP PROCEDURE IF EXISTS `ConsultarProducto` */;
+=======
+/*!50003 DROP PROCEDURE IF EXISTS `ConsultarProvincias` */;
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -719,6 +1081,7 @@ DELIMITER ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+<<<<<<< HEAD
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarProducto`(
     IN pProductoID INT
@@ -823,6 +1186,9 @@ BEGIN
     FROM proveedores;
 END ;;
 DELIMITER ;
+=======
+
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
@@ -951,6 +1317,10 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 CREATE DEFINER=`root`@`localhost` PROCEDURE `IniciarSesion`(
     IN pCorreo VARCHAR(50),
     IN pContrasena VARCHAR(20)
@@ -959,7 +1329,11 @@ BEGIN
     SELECT  
         clienteID AS ClienteID,
         cedula AS Cedula,
+<<<<<<< HEAD
         nombre AS Nombre,  -- ✅ alias correcto para $_SESSION
+=======
+        nombre,
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
         apellido1,
         apellido2,
         contrasena,
@@ -975,6 +1349,7 @@ BEGIN
         AND contrasena = pContrasena
         AND estadoID = 1;
 END ;;
+<<<<<<< HEAD
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1002,6 +1377,11 @@ BEGIN
     VALUES (pNombre, pPrecio, pCantidad, pImagen, pCategoriaID);
 END ;;
 DELIMITER ;
+=======
+
+DELIMITER ;
+
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
@@ -1114,6 +1494,35 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+<<<<<<< HEAD
+=======
+/*!50003 DROP PROCEDURE IF EXISTS `RegistrarProducto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarProducto`(
+    IN pNombre VARCHAR(100),
+    IN pPrecio DECIMAL(10,2),
+    IN pCantidad INT,
+    IN pImagen VARCHAR(1000),
+    IN pCategoriaID INT
+)
+BEGIN
+    INSERT INTO articulos (nombre, precio, cantidad, imagen, categoriaID)
+    VALUES (pNombre, pPrecio, pCantidad, pImagen, pCategoriaID);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 /*!50003 DROP PROCEDURE IF EXISTS `RegistrarCarrito` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1130,10 +1539,17 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarCarrito`(	pClienteID INT,
 BEGIN
 
     IF (SELECT COUNT(*) FROM carrito WHERE clienteID = pClienteID 
+<<<<<<< HEAD
 									   AND productoID = pProductoID) = 0 
 	THEN
 
         INSERT INTO ferresoluciones.carrito (productoID, clienteID, cantidadDeseada, fecha)
+=======
+									   AND articuloID = pProductoID) = 0 
+	THEN
+
+        INSERT INTO ferresoluciones.carrito (articuloID, clienteID, cantidadDeseada, fecha)
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
         VALUES (pProductoID, pClienteID, pCantidad, NOW());
 
     ELSE
@@ -1142,7 +1558,11 @@ BEGIN
         SET cantidadDeseada = pCantidad,
             Fecha = NOW()
         WHERE clienteID = pClienteID 
+<<<<<<< HEAD
         AND productoID = pProductoID;
+=======
+        AND articuloID = pProductoID;
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 
     END IF;
 END ;;
@@ -1162,6 +1582,7 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarCliente`(
+<<<<<<< HEAD
     IN pCedula VARCHAR(20),
     IN pNombre VARCHAR(50),
     IN pApellido1 VARCHAR(50),
@@ -1197,13 +1618,36 @@ BEGIN
         pCorreo,
         pTelefono
     );
+=======
+    pCedula int,
+    pNombre VARCHAR(50),
+    pApellido1 VARCHAR(50),
+    pApellido2 VARCHAR(50),
+    pContrasena VARCHAR(20),
+    pProvinciaID INT,
+    pOtrasSenas VARCHAR(200),
+    pCodigoPostal VARCHAR(10),
+    pCorreo VARCHAR(50),
+    pTelefono VARCHAR(15)
+)
+BEGIN
+    INSERT INTO `ferresoluciones`.`clientes`(`cedula`, `nombre`, `apellido1`, `apellido2`, `contrasena`, `estadoID`, `rolID`, 
+                           `fechaRegistro`, `provinciaID`, `otrasSenas`, `codigoPostal`, 
+                           `correo`, `telefono`)
+    VALUES (pCedula, pNombre, pApellido1, pApellido2, pContrasena, 1, 2, NOW(), 
+            pProvinciaID, pOtrasSenas, pCodigoPostal, pCorreo, pTelefono);
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+<<<<<<< HEAD
 /*!50003 DROP PROCEDURE IF EXISTS `RegistrarProducto` */;
+=======
+/*!50003 DROP PROCEDURE IF EXISTS `RemoverProductoCarrito` */;
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -1213,6 +1657,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
+<<<<<<< HEAD
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarProducto`(
     IN pNombre VARCHAR(100),
     IN pPrecio DECIMAL(10,2),
@@ -1249,6 +1694,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarProveedor`(
 BEGIN
     INSERT INTO proveedores (nombre, cedula, correo, telefono, direccion, estadoID, fechaRegistro)
     VALUES (pNombre, pCedula, pCorreo, pTelefono, pDireccion, 1, NOW());
+=======
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RemoverProductoCarrito`(pClienteID int, pProductoID int)
+BEGIN
+
+	DELETE FROM Carrito
+	WHERE	clienteID = pClienteID
+		AND articuloID = pProductoID;
+
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1288,4 +1742,32 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<< HEAD
 -- Dump completed on 2025-04-09 18:26:22
+=======
+-- Dump completed on 2024-12-18 17:52:57
+
+
+use ferresoluciones 
+select * from clientes;
+
+INSERT INTO clientes (
+    cedula, nombre, apellido1, apellido2, contrasena, estadoID,
+    rolID, fechaRegistro, otrasSenas, codigoPostal, correo, telefono
+)
+VALUES (
+    '101010101',           -- cédula
+    'Carlos',              -- nombre
+    'Ramírez',             -- apellido1
+    'Jiménez',             -- apellido2
+    '1234pass',            -- contraseña
+    1,                     -- estadoID (ej: 1 = Activo)
+    2,                     -- rolID (ej: 2 = Cliente)
+    NOW(),                 -- fecha de registro actual
+    'Del parque 200m sur', -- otras señas
+    '10101',               -- código postal
+    'carlos@example.com',  -- correo
+    '8888-8888'            -- teléfono
+);
+
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98

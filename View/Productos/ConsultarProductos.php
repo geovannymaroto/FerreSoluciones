@@ -43,6 +43,10 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProductosC
                                     </thead>
                                     <tbody class="table-group-divider">
                                         <?php
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
                                             $datos = Consultarproductos();
                                             if ($datos != null && $datos->num_rows > 0) {
                                             while ($fila = mysqli_fetch_array($datos)) {
@@ -68,6 +72,32 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProductosC
                                         }else{
 
                                             }
+<<<<<<< HEAD
+=======
+=======
+                                        $datos = Consultarproductos();
+                                        while ($fila = mysqli_fetch_array($datos)) {
+                                            echo "<tr>";
+                                            echo "<td>" . $fila["productoID"] . "</td>";
+                                            echo "<td>" . $fila["nombre"] . "</td>";
+                                            echo "<td>₡ " . number_format($fila["precio"], 2) . "</td>";
+                                            echo "<td>" . $fila["cantidad"] . "</td>";
+                                            echo "<td><img width='125' height='100' src='" . $fila["imagen"] . "' alt='Imagen'></td>";
+                                            echo "<td>" . $fila["nombreCategoria"] . "</td>";
+                                            echo '<td>
+                                                    <a href="ActualizarProductos.php?id=' . $fila["productoID"] . '" class="btn">
+                                                        <i class="fa fa-edit" style="color:#FFC107; font-size: 1.6em;"></i>
+                                                    </a>
+
+                                                    <button id="btnOpenModal" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                                        data-id="' . $fila["productoID"] . '" data-name="' . $fila["nombre"] . '">
+                                                        <i class="fa fa-trash" style="color:black; font-size: 1.6em;"></i>
+                                                    </button>
+                                                  </td>';
+                                            echo "</tr>";
+                                        }
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
                                         ?>
                                     </tbody>
                                 </table>
@@ -95,8 +125,18 @@ include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProductosC
 
                 <form action="" method="POST">
                     <div class="modal-body">
+<<<<<<< HEAD
                         <input type="hidden" id="txtProductoID" name="txtProductoID">
                         ¿Desea eliminar el producto: <label id="lblNombre" class="fw-bold text-danger"></label>?
+=======
+<<<<<<< HEAD
+                        <input type="hidden" id="txtProductoID" name="txtProductoID">
+                        ¿Desea eliminar el producto: <label id="lblNombre" class="fw-bold text-danger"></label>?
+=======
+                        <input type="hidden" id="txtproductoID" name="txtproductoID">
+                        ¿Desea eliminar el artículo: <label id="lblNombre" class="fw-bold text-danger"></label>?
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-warning fw-bold" value="Eliminar"

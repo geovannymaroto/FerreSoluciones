@@ -51,14 +51,30 @@
                                             while($fila = mysqli_fetch_array($datos))
                                             {
                                                 echo "<tr>";
+<<<<<<< HEAD
                                                 echo "<td>" . $fila["productoID"] . ' - '. $fila["nombre"] . "</td>";
+=======
+<<<<<<< HEAD
+                                                echo "<td>" . $fila["productoID"] . ' - '. $fila["nombre"] . "</td>";
+=======
+                                                echo "<td>" . $fila["articuloID"] . ' - '. $fila["nombre"] . "</td>";
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
                                                 echo "<td>" . $fila["cantidadDeseada"] . "</td>";
                                                 echo "<td>¢ " . number_format($fila["totalUnitario"],2) . "</td>";
                                                 echo "<td>¢ " . number_format($fila["total"],2) . "</td>";
                                                 echo '<td>
 
                                                     <button id="btnOpenModal" type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+<<<<<<< HEAD
                                                             data-id=' . $fila["productoID"] . ' data-name="' . $fila["nombre"] . '">
+=======
+<<<<<<< HEAD
+                                                            data-id=' . $fila["productoID"] . ' data-name="' . $fila["nombre"] . '">
+=======
+                                                            data-id=' . $fila["articuloID"] . ' data-name="' . $fila["nombre"] . '">
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
                                                             <i class="fa fa-trash" style="color:red; font-size: 1.6em;"></i>
                                                         </button>
 
@@ -114,7 +130,11 @@
 
                 <form action="" method="POST">
                     <div class="modal-body">
+<<<<<<< HEAD
                         <input type="hidden" id="txtProductoID" name="txtProductoID">
+=======
+                        <input type="hidden" id="txtArticuloID" name="txtArticuloID">
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
                         ¿Desea eliminar el siguiente artículo:<label id="lblNombre"></label> de su carrito?
                     </div>
                     <div class="modal-footer">

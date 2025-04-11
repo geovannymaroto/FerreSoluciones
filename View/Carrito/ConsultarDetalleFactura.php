@@ -51,7 +51,11 @@
                                             While($fila = mysqli_fetch_array($datos))
                                             {
                                                 echo "<tr>";
+<<<<<<< HEAD
                                                 echo "<td>" . $fila["productoID"] . "</td>"; 
+=======
+                                                echo "<td>" . $fila["articuloID"] . "</td>"; 
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
                                                 echo "<td>" . $fila["cantidad"] . "</td>";
                                                 echo "<td>" . number_format($fila["precio"],2) . "</td>";
                                                 echo "<td>¢ " . number_format($fila["total"],2) . "</td>";

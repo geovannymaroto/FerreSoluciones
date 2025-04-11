@@ -87,10 +87,23 @@
 <footer class="bg3 p-t-75 p-b-32">
     <div class="container">
         <h4 class="stext-301 cl0 p-b-30">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
             Grupo 5 FerreSoluciones 
         </h4>
         <p>
             Sebastian Castro Alfaro - Jonhson Abarca Chaves - Jeferson Mora Alfaro
+<<<<<<< HEAD
+=======
+=======
+            Grupo 
+        </h4>
+        <p>
+            Sebastian Castro Alfaro
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
         </p>
     </div>
 </footer>

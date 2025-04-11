@@ -1,4 +1,8 @@
 <?php
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 
 
 include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/View/layout.php';
@@ -11,6 +15,18 @@ $datos = ConsultarProducto($id);
 ?>
 
 
+<<<<<<< HEAD
+=======
+=======
+include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/View/layout.php';
+include_once $_SERVER["DOCUMENT_ROOT"] . '/FerreSoluciones/Controller/ProductosController.php';
+
+$id = $_GET["id"];
+$datos = ConsultarProducto($id);
+?>
+
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 <!doctype html>
 <html lang="es">
 
@@ -38,7 +54,15 @@ $datos = ConsultarProducto($id);
                             ?>
 
                             <form action="" method="POST" enctype="multipart/form-data">
+<<<<<<< HEAD
                                 <input type="hidden" id="txtProductoID" name="txtProductoID" value="<?php echo $datos["productoID"] ?>">
+=======
+<<<<<<< HEAD
+                                <input type="hidden" id="txtProductoID" name="txtProductoID" value="<?php echo $datos["productoID"] ?>">
+=======
+                                <input type="hidden" id="txtproductoID" name="txtproductoID" value="<?php echo $datos["productoID"] ?>">
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
 
                                 <div class="mb-3">
                                     <label class="form-label">Nombre del producto</label>
@@ -91,8 +115,18 @@ $datos = ConsultarProducto($id);
                                     </select>
                                 </div>
 
+<<<<<<< HEAD
                                 <input type="submit" class="btn btn-warning fw-bold" value="Actualizar Producto" id="btnActualizarProducto"
                                        name="btnActualizarProducto">
+=======
+<<<<<<< HEAD
+                                <input type="submit" class="btn btn-warning fw-bold" value="Actualizar Producto" id="btnActualizarProducto"
+                                       name="btnActualizarProducto">
+=======
+                                <input type="submit" class="btn btn-warning fw-bold" value="Actualizar Producto" id="btnActualizarproducto"
+                                       name="btnActualizarproducto">
+>>>>>>> 3270c3147b108942e1bdd2561c6e80348ca53357
+>>>>>>> 2951a02a3f768bbb53a7ae38a4574942d6db5d98
                             </form>
                         </div>
                     </div>
